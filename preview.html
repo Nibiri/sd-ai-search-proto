@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LogicBPM Design System Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --purple-1: #f3effc; --purple-2: #e1d8f7; --purple-3: #cab9f0;
+    --purple-5: #9a79e3; --purple-6: #845cdd; --purple-7: #704ebc; --purple-8: #5e419d;
+    --gray-1: #ffffff; --gray-2: #f9fbfc; --gray-3: #f3f4f5; --gray-4: #e8eaeb;
+    --gray-5: #d7d8d9; --gray-6: #bdbebf; --gray-7: #8c8c8c; --gray-8: #575859;
+    --gray-9: #333333; --gray-10: #242526; --gray-12: #111314;
+    --red-1: #f8e9ef; --red-6: #b91e5a;
+    --green-1: #eefbf1; --green-6: #56d672; --green-7: #49b661;
+    --orange-1: #fffaef; --orange-6: #f79009;
+    --yellow-6: #ffcc5f;
+    --blue-5: #5f6ce2;
+    --page: var(--gray-3);
+    --card: var(--gray-1);
+    --border: var(--gray-4);
+    --text: var(--gray-10);
+    --text-secondary: var(--gray-7);
+    --text-inactive: var(--gray-6);
+    --accent: var(--purple-6);
+    --shadow-xs: 0px 1px 2px 0px rgba(16,24,40,0.05);
+    --shadow-md: 0px 4px 8px -2px rgba(16,24,40,0.10), 0px 2px 4px -2px rgba(16,24,40,0.06);
+    --font: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--page); color: var(--text); font-family: var(--font); font-size: 14px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+
+  /* ── NAV ── */
+  .nav { position: sticky; top: 0; z-index: 100; height: 56px; display: flex; align-items: center; gap: 24px; padding: 0 32px; background: var(--card); border-bottom: 1px solid var(--border); }
+  .nav-brand { font-size: 15px; font-weight: 600; color: var(--text); }
+  .nav-links { display: flex; gap: 4px; flex: 1; }
+  .nav-links a { font-size: 13px; color: var(--text-secondary); text-decoration: none; padding: 5px 10px; border-radius: 8px; transition: background 0.15s, color 0.15s; }
+  .nav-links a:hover { background: var(--gray-3); color: var(--text); }
+  .badge-nav { background: var(--purple-6); color: #fff; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 9999px; }
+
+  /* ── SECTIONS ── */
+  .section { max-width: 1040px; margin: 0 auto; padding: 64px 32px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-label { font-size: 11px; font-weight: 600; color: var(--text-inactive); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; }
+  .section-title { font-size: 32px; font-weight: 600; color: var(--text); margin-bottom: 40px; line-height: 1.2; }
+
+  /* ── COLOR GRID ── */
+  .color-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; margin-bottom: 40px; }
+  .color-group-label { font-size: 12px; font-weight: 600; color: var(--text-secondary); margin: 28px 0 12px; grid-column: 1/-1; }
+  .swatch { background: var(--card); border-radius: 12px; border: 1px solid var(--border); overflow: hidden; box-shadow: var(--shadow-xs); }
+  .swatch-block { height: 80px; width: 100%; }
+  .swatch-info { padding: 12px 14px; }
+  .swatch-name { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+  .swatch-hex { font-size: 11px; color: var(--text-secondary); font-family: 'JetBrains Mono', 'Fira Code', monospace; margin-bottom: 3px; }
+  .swatch-role { font-size: 11px; color: var(--text-inactive); }
+
+  /* ── TYPOGRAPHY ── */
+  .type-row { padding: 24px 0; border-bottom: 1px solid var(--border); display: flex; align-items: baseline; gap: 24px; }
+  .type-row:last-child { border-bottom: none; }
+  .type-sample { flex: 1; }
+  .type-meta { font-size: 11px; color: var(--text-inactive); font-family: 'JetBrains Mono', 'Fira Code', monospace; white-space: nowrap; }
+
+  /* ── BUTTONS ── */
+  .button-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-bottom: 32px; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 20px; border-radius: 16px; font-family: var(--font); font-size: 16px; font-weight: 400; cursor: pointer; border: none; transition: background 0.2s; text-decoration: none; }
+  .btn-label { font-size: 11px; color: var(--text-inactive); text-align: center; margin-top: 8px; }
+  .btn-item { display: flex; flex-direction: column; }
+  .btn-primary    { background: var(--purple-6); color: #fff; }
+  .btn-primary:hover { background: var(--purple-7); }
+  .btn-secondary  { background: var(--purple-1); color: var(--purple-6); }
+  .btn-secondary:hover { background: var(--purple-2); }
+  .btn-tertiary   { background: transparent; color: var(--gray-10); border: 1px solid var(--gray-4); }
+  .btn-tertiary:hover { background: var(--gray-3); }
+  .btn-operation  { background: rgba(0,0,0,0.05); color: var(--gray-10); }
+  .btn-link       { background: transparent; color: var(--purple-6); padding: 0 8px; }
+  .btn-error      { background: var(--red-6); color: #fff; }
+  .btn-error-sec  { background: var(--red-1); color: var(--red-6); }
+  .btn-accept     { background: var(--green-1); color: var(--green-7); }
+  .btn-disabled   { background: var(--gray-4); color: var(--gray-6); cursor: not-allowed; opacity: 1; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+
+  /* ── STATUS PILLS / BADGES ── */
+  .badge-row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 12px; }
+  .pill { display: inline-flex; align-items: center; height: 24px; padding: 0 10px; border-radius: 6px; font-size: 12px; font-weight: 500; }
+  .pill-green  { background: var(--green-1); color: var(--green-7); }
+  .pill-blue   { background: #e8f0fe; color: #3d5afe; }
+  .pill-yellow { background: #fffaef; color: #b76e00; }
+  .pill-orange { background: var(--orange-1); color: var(--orange-6); }
+  .pill-red    { background: var(--red-1); color: var(--red-6); }
+  .pill-gray   { background: var(--gray-3); color: var(--gray-7); }
+  .pill-purple { background: var(--purple-1); color: var(--purple-8); }
+  .pill-lb     { background: #e8f8fc; color: #0077a8; }
+
+  /* ── CARDS ── */
+  .card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 20px; box-shadow: var(--shadow-xs); transition: box-shadow 0.2s, transform 0.15s; cursor: pointer; }
+  .card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+  .card-accent { border-top: 2px solid var(--accent-color, var(--purple-6)); }
+  .card-tag { display: inline-flex; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 11px; font-weight: 500; margin-bottom: 10px; }
+  .card-title { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+  .card-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+  .card-meta { display: flex; align-items: center; justify-content: space-between; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border); }
+  .card-client { font-size: 12px; color: var(--text-secondary); }
+  .avatar-sm { width: 24px; height: 24px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 700; color: #fff; }
+
+  /* ── INPUTS ── */
+  .form-group { margin-bottom: 20px; max-width: 360px; }
+  .form-label { display: block; font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 6px; }
+  .form-input { width: 100%; height: 40px; background: var(--gray-2); color: var(--text); border: 1px solid var(--gray-4); padding: 0 12px; border-radius: 8px; font-family: var(--font); font-size: 14px; outline: none; transition: border-color 0.2s; }
+  .form-input:focus { border-color: var(--purple-5); box-shadow: 0 0 0 3px var(--purple-1); }
+  .form-input.error  { border-color: var(--red-6); }
+  .form-input.warning { border-color: var(--orange-6); }
+  .form-input.disabled { background: var(--gray-3); color: var(--gray-6); cursor: not-allowed; }
+  .form-hint { font-size: 12px; margin-top: 5px; }
+  .form-hint.error   { color: var(--red-6); }
+  .form-hint.warning { color: var(--orange-6); }
+  .form-hint.default { color: var(--gray-6); }
+  .form-row { display: flex; gap: 24px; flex-wrap: wrap; }
+
+  /* ── SPACING ── */
+  .spacing-row { display: flex; align-items: flex-end; gap: 16px; flex-wrap: wrap; }
+  .spacing-item { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .spacing-block { background: var(--purple-6); border-radius: 4px; opacity: 0.7; height: 24px; }
+  .spacing-value { font-size: 11px; color: var(--text-inactive); font-family: monospace; }
+
+  /* ── RADIUS ── */
+  .radius-row { display: flex; gap: 16px; flex-wrap: wrap; align-items: flex-end; }
+  .radius-item { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .radius-box { width: 72px; height: 72px; background: var(--purple-2); border: 1px solid var(--purple-3); }
+  .radius-label { font-size: 12px; font-weight: 600; color: var(--text); }
+  .radius-sub { font-size: 10px; color: var(--text-inactive); }
+
+  /* ── ELEVATION ── */
+  .elevation-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; }
+  .elev-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px 16px; text-align: center; }
+  .elev-card.level-1 { box-shadow: var(--shadow-xs); }
+  .elev-card.level-2 { box-shadow: 0px 1px 3px rgba(16,24,40,.10), 0px 1px 2px rgba(16,24,40,.06); }
+  .elev-card.level-3 { box-shadow: var(--shadow-md); }
+  .elev-card.level-4 { box-shadow: 0px 12px 16px -4px rgba(16,24,40,.08), 0px 4px 6px -2px rgba(16,24,40,.03); }
+  .elev-card.focus   { box-shadow: none; border: 2px solid var(--purple-6); }
+  .elev-label { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+  .elev-desc  { font-size: 11px; color: var(--text-inactive); }
+
+  /* ── AVATARS ── */
+  .avatar-row { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; margin-bottom: 24px; }
+  .avatar { border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; color: #fff; position: relative; }
+  .avatar-status { position: absolute; bottom: 0; right: 0; border-radius: 50%; border: 2px solid #fff; }
+
+  /* ── CHAT BUBBLES ── */
+  .chat-demo { background: var(--gray-3); border-radius: 16px; padding: 20px; max-width: 480px; display: flex; flex-direction: column; gap: 16px; }
+  .bubble-row { display: flex; align-items: flex-start; gap: 8px; }
+  .bubble-row.out { flex-direction: row-reverse; }
+  .bubble { max-width: 72%; padding: 10px 14px; font-size: 14px; line-height: 1.5; }
+  .bubble.client { background: var(--purple-1); border: 1px solid var(--purple-3); color: var(--text); border-radius: 16px 16px 4px 16px; }
+  .bubble.ai     { background: var(--gray-1); border: 1px solid var(--gray-4); color: var(--text); border-radius: 16px 16px 16px 4px; }
+  .bubble-time { font-size: 10px; color: var(--text-inactive); margin-top: 4px; }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .section { padding: 40px 16px; }
+    .card-grid { grid-template-columns: 1fr; }
+    .color-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <span class="nav-brand">LogicBPM</span>
+  <div class="nav-links">
+    <a href="#colors">Colors</a>
+    <a href="#typography">Typography</a>
+    <a href="#buttons">Buttons</a>
+    <a href="#status">Status</a>
+    <a href="#cards">Cards</a>
+    <a href="#inputs">Inputs</a>
+    <a href="#spacing">Spacing</a>
+    <a href="#radius">Radius</a>
+    <a href="#elevation">Elevation</a>
+    <a href="#avatars">Avatars</a>
+    <a href="#chat">Chat</a>
+  </div>
+  <span class="badge-nav">DESIGN.md</span>
+</nav>
+
+<!-- 01 / COLORS -->
+<section class="section" id="colors">
+  <div class="section-label">01 / COLORS</div>
+  <div class="section-title">Color Palette</div>
+
+  <div style="font-size:12px;font-weight:600;color:var(--text-secondary);margin-bottom:12px;">Background Surfaces</div>
+  <div class="color-grid">
+    <div class="swatch"><div class="swatch-block" style="background:#f9fbfc;"></div><div class="swatch-info"><div class="swatch-name">Input Surface</div><div class="swatch-hex">#f9fbfc</div><div class="swatch-role">Input backgrounds, gray-2</div></div></div>
+    <div class="swatch"><div class="swatch-block" style="background:#f3f4f5;border-bottom:1px solid #e8eaeb;"></div><div class="swatch-info"><div class="swatch-name">Page Background</div><div class="swatch-hex">#f3f4f5</div><div class="swatch-role">Page bg, gray-3</div></div></div>
+    <div class="swatch"><div class="swatch-block" style="background:#e8eaeb;"></div><div class="swatch-info"><div class="swatch-name">Border Low</div><div class="swatch-hex">#e8eaeb</div><div class="swatch-role">Card borders, dividers</div></div></div>
+    <div class="swatch"><div class="swatch-block" style="background:#d7d8d9;"></div><div class="swatch-info"><div class="swatch-name">Border High</div><div class="swatch-hex">#d7d8d9</div><div class="swatch-role">Strong borders, gray-5</div></div></div>
+  </div>
+
+  <div style="font-size:12px;font-weight:600;color:var(--text-secondary);margin:28px 0 12px;">Text & Content</div>
+  <div class="color-grid">
+    <div class="swatch"><div class="swatch-block" style="background:#242526;"></div><div class="swatch-info"><div class="swatch-name">Primary Text</div><div class="swatch-hex">#242526</div><div class="swatch-role">Headings, primary</div></div></div>
+    <div class="swatch"><div class="swatch-block" style="background:#8c8c8c;"></div><div class="swatch-info"><div class="swatch-name">Secondary Text</div><div class="swatch-hex">#8c8c8c</div><div class="swatch-role">Body, metadata</div></div></div>
+    <div class="swatch"><div class="swatch-block" style="background:#bdbebf;"></div><div class="swatch-info"><div class="swatch-name">Inactive Text</div><div class="swatch-hex">#bdbebf</div><div class="swatch-role">Placeholders, disabled</div></div></div>
+    <div class="swatch"><div class="swatch-block" style="background:#5f6ce2;"></div><div class="swatch-info"><div class="swatch-name">Link</div><div class="swatch-hex">#5f6ce2</div><div class="swatch-role">Hyperlinks, blue-5</div></div></div>
+  </div>
+
+  <div style="font-size:12px;font-weight:600;color:var(--text-secondary);margin:28px 0 12px;">Brand & Accent</div>
+  <div class="color-grid">
+    <div class="swatch"><div class="swatch-block" style="background:#845cdd;"></div><div class="swatch-info"><div class="swatch-name">Brand Purple</div><div class="swatch-hex">#845cdd</div><div class="swatch-role">Primary action, CTA</div></div></div>
+    <div class="swatch"><div class="swatch-block" style="background:#704ebc;"></div><div class="swatch-info"><div class="swatch-name">Purple Hover</div><div class="swatch-hex">#704ebc</div><div class="swatch-role">Hover, active states</div></div></div>
+    <div class="swatch"><div class="swatch-block" style="background:#f3effc;"></div><div class="swatch-info"><div class="swatch-name">Purple Light</div><div class="swatch-hex">#f3effc</div><div class="swatch-role">Secondary btn bg, tints</div></div></div>
+    <div class="swatch"><div class="swatch-block" style="background:#9a79e3;"></div><div class="swatch-info"><div class="swatch-name">Focus Ring</div><div class="swatch-hex">#9a79e3</div><div class="swatch-role">Input focus border</div></div></div>
+  </div>
+
+  <div style="font-size:12px;font-weight:600;color:var(--text-secondary);margin:28px 0 12px;">Status</div>
+  <div class="color-grid">
+    <div class="swatch"><div class="swatch-block" style="background:#b91e5a;"></div><div class="swatch-info"><div class="swatch-name">Error / Danger</div><div class="swatch-hex">#b91e5a</div><div class="swatch-role">Error text, destructive</div></div></div>
+    <div class="swatch"><div class="swatch-block" style="background:#56d672;"></div><div class="swatch-info"><div class="swatch-name">Success</div><div class="swatch-hex">#56d672</div><div class="swatch-role">Active status, online dot</div></div></div>
+    <div class="swatch"><div class="swatch-block" style="background:#f79009;"></div><div class="swatch-info"><div class="swatch-name">Warning</div><div class="swatch-hex">#f79009</div><div class="swatch-role">Warnings, overdue SLA</div></div></div>
+    <div class="swatch"><div class="swatch-block" style="background:#ffcc5f;"></div><div class="swatch-info"><div class="swatch-name">Yellow</div><div class="swatch-hex">#ffcc5f</div><div class="swatch-role">Starred items, highlight</div></div></div>
+  </div>
+</section>
+
+<!-- 02 / TYPOGRAPHY -->
+<section class="section" id="typography">
+  <div class="section-label">02 / TYPOGRAPHY</div>
+  <div class="section-title">Typography Scale</div>
+
+  <div class="type-row">
+    <div class="type-sample"><span style="font-size:24px;font-weight:600;color:var(--text);line-height:1.3;">Display Heading</span></div>
+    <div class="type-meta">XL — 24px / 600 / 1.30 / Inter</div>
+  </div>
+  <div class="type-row">
+    <div class="type-sample"><span style="font-size:20px;font-weight:600;color:var(--text);line-height:1.3;">Section Heading</span></div>
+    <div class="type-meta">L — 20px / 600 / 1.30 / Inter</div>
+  </div>
+  <div class="type-row">
+    <div class="type-sample"><span style="font-size:16px;font-weight:600;color:var(--text);line-height:1.4;">Card Title / Modal Header</span></div>
+    <div class="type-meta">M — 16px / 600 / 1.40 / Inter</div>
+  </div>
+  <div class="type-row">
+    <div class="type-sample"><span style="font-size:14px;font-weight:400;color:var(--text);line-height:1.5;">Body text — LogicBPM helps teams manage business processes, support requests, and client communications in a single workspace.</span></div>
+    <div class="type-meta">S — 14px / 400 / 1.50 / Inter</div>
+  </div>
+  <div class="type-row">
+    <div class="type-sample"><span style="font-size:13px;font-weight:400;color:var(--text-secondary);line-height:1.4;">Secondary label — metadata, timestamps, captions</span></div>
+    <div class="type-meta">XS — 13px / 400 / 1.40 / Inter</div>
+  </div>
+  <div class="type-row">
+    <div class="type-sample"><span style="font-size:11px;font-weight:400;color:var(--text-inactive);line-height:1.4;">Micro caption — hints, timestamps, tooltips</span></div>
+    <div class="type-meta">Micro — 11px / 400 / 1.40 / Inter</div>
+  </div>
+  <div class="type-row">
+    <div class="type-sample"><span style="font-size:14px;font-weight:400;color:#5f6ce2;line-height:1.5;text-decoration:underline;">Link text — underline on hover</span></div>
+    <div class="type-meta">Link — 14px / 400 / blue-5 #5f6ce2</div>
+  </div>
+</section>
+
+<!-- 03 / BUTTONS -->
+<section class="section" id="buttons">
+  <div class="section-label">03 / BUTTONS</div>
+  <div class="section-title">Button Variants</div>
+
+  <div class="button-row">
+    <div class="btn-item"><button class="btn btn-primary">Primary</button><div class="btn-label">Primary Brand</div></div>
+    <div class="btn-item"><button class="btn btn-secondary">Secondary</button><div class="btn-label">Secondary</div></div>
+    <div class="btn-item"><button class="btn btn-tertiary">Tertiary</button><div class="btn-label">Tertiary</div></div>
+    <div class="btn-item"><button class="btn btn-operation">Operation</button><div class="btn-label">Operation</div></div>
+    <div class="btn-item"><button class="btn btn-link">Link</button><div class="btn-label">Link</div></div>
+  </div>
+  <div class="button-row">
+    <div class="btn-item"><button class="btn btn-error">Primary Error</button><div class="btn-label">Destructive</div></div>
+    <div class="btn-item"><button class="btn btn-error-sec">Secondary Error</button><div class="btn-label">Error Outlined</div></div>
+    <div class="btn-item"><button class="btn btn-accept">Accept</button><div class="btn-label">Confirm / Accept</div></div>
+    <div class="btn-item"><button class="btn btn-disabled" disabled>Disabled</button><div class="btn-label">Disabled</div></div>
+  </div>
+  <div class="button-row">
+    <div class="btn-item">
+      <button class="btn btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+        Отправить
+      </button>
+      <div class="btn-label">With icon right</div>
+    </div>
+    <div class="btn-item">
+      <button class="btn btn-secondary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+        Добавить
+      </button>
+      <div class="btn-label">With icon left</div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 / STATUS -->
+<section class="section" id="status">
+  <div class="section-label">04 / STATUS</div>
+  <div class="section-title">Status Badges</div>
+
+  <div style="font-size:12px;font-weight:600;color:var(--text-secondary);margin-bottom:12px;">Ticket statuses</div>
+  <div class="badge-row">
+    <span class="pill pill-blue">Новое</span>
+    <span class="pill pill-yellow">Ожидает назначения</span>
+    <span class="pill pill-lb">Назначено</span>
+    <span class="pill pill-green">В работе</span>
+    <span class="pill pill-orange">Отложено</span>
+    <span class="pill pill-lb">Решено</span>
+    <span class="pill pill-gray">Закрыто</span>
+    <span class="pill pill-red">Просрочено</span>
+  </div>
+
+  <div style="font-size:12px;font-weight:600;color:var(--text-secondary);margin:24px 0 12px;">Entity types (top accent on cards)</div>
+  <div class="badge-row">
+    <span class="pill pill-red">Проблема</span>
+    <span class="pill pill-orange">Жалоба</span>
+    <span class="pill pill-purple">Запрос</span>
+    <span class="pill pill-green">Обращение</span>
+  </div>
+
+  <div style="font-size:12px;font-weight:600;color:var(--text-secondary);margin:24px 0 12px;">Avatar status dots</div>
+  <div style="display:flex;gap:24px;align-items:center;">
+    <div style="display:flex;align-items:center;gap:8px;">
+      <span class="dot" style="background:#56d672;width:10px;height:10px;"></span>
+      <span style="font-size:13px;color:var(--text-secondary);">Онлайн / Активен</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <span class="dot" style="background:#b91e5a;width:10px;height:10px;"></span>
+      <span style="font-size:13px;color:var(--text-secondary);">Занят</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <span class="dot" style="background:#ffcc5f;width:10px;height:10px;"></span>
+      <span style="font-size:13px;color:var(--text-secondary);">Перерыв</span>
+    </div>
+  </div>
+</section>
+
+<!-- 05 / CARDS -->
+<section class="section" id="cards">
+  <div class="section-label">05 / CARDS</div>
+  <div class="section-title">Card Examples</div>
+
+  <div class="card-grid">
+    <div class="card card-accent" style="--accent-color:#b91e5a;">
+      <span class="card-tag pill pill-red">Проблема</span>
+      <div class="card-title">SD-21786</div>
+      <div class="card-desc">Card reader at front register declines every chip transaction; magstripe still works.</div>
+      <div class="card-meta">
+        <span class="card-client">Maison Rouge — Flatiron</span>
+        <span class="avatar-sm" style="background:#7C5CBF;">МА</span>
+      </div>
+    </div>
+    <div class="card card-accent" style="--accent-color:#845cdd;">
+      <span class="card-tag pill pill-purple">Запрос</span>
+      <div class="card-title">SD-21847</div>
+      <div class="card-desc">Client confirming whether new iPad can be swapped under warranty; awaiting serial number.</div>
+      <div class="card-meta">
+        <span class="card-client">Fuego Tacos — Austin</span>
+        <span class="avatar-sm" style="background:#22C55E;">TA</span>
+      </div>
+    </div>
+    <div class="card card-accent" style="--accent-color:#f79009;">
+      <span class="card-tag pill pill-orange">Жалоба</span>
+      <div class="card-title">SD-21811</div>
+      <div class="card-desc">Wi-Fi drops every 20 min during lunch rush, guests and POS lose connection.</div>
+      <div class="card-meta">
+        <span class="card-client">Greenleaf Café — Berkeley</span>
+        <span class="avatar-sm" style="background:#3B82F6;">JH</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 / INPUTS -->
+<section class="section" id="inputs">
+  <div class="section-label">06 / INPUTS</div>
+  <div class="section-title">Form Elements</div>
+
+  <div class="form-row">
+    <div>
+      <div class="form-group">
+        <label class="form-label">Default</label>
+        <input class="form-input" placeholder="Введите текст..." value="">
+        <div class="form-hint default">Подсказка для поля</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Error state</label>
+        <input class="form-input error" value="Неверный формат">
+        <div class="form-hint error">Обязательное поле</div>
+      </div>
+    </div>
+    <div>
+      <div class="form-group">
+        <label class="form-label">Warning state</label>
+        <input class="form-input warning" value="Введённое значение">
+        <div class="form-hint warning">Проверьте правильность данных</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Disabled</label>
+        <input class="form-input disabled" value="Недоступно" disabled>
+        <div class="form-hint default">Поле недоступно для редактирования</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 / SPACING -->
+<section class="section" id="spacing">
+  <div class="section-label">07 / SPACING</div>
+  <div class="section-title">Spacing Scale</div>
+  <div class="spacing-row">
+    <div class="spacing-item"><div class="spacing-block" style="width:4px;"></div><div class="spacing-value">4</div></div>
+    <div class="spacing-item"><div class="spacing-block" style="width:8px;"></div><div class="spacing-value">8</div></div>
+    <div class="spacing-item"><div class="spacing-block" style="width:12px;"></div><div class="spacing-value">12</div></div>
+    <div class="spacing-item"><div class="spacing-block" style="width:16px;"></div><div class="spacing-value">16</div></div>
+    <div class="spacing-item"><div class="spacing-block" style="width:20px;"></div><div class="spacing-value">20</div></div>
+    <div class="spacing-item"><div class="spacing-block" style="width:24px;"></div><div class="spacing-value">24</div></div>
+    <div class="spacing-item"><div class="spacing-block" style="width:32px;"></div><div class="spacing-value">32</div></div>
+    <div class="spacing-item"><div class="spacing-block" style="width:48px;"></div><div class="spacing-value">48</div></div>
+  </div>
+</section>
+
+<!-- 08 / RADIUS -->
+<section class="section" id="radius">
+  <div class="section-label">08 / RADIUS</div>
+  <div class="section-title">Border Radius Scale</div>
+  <div class="radius-row">
+    <div class="radius-item"><div class="radius-box" style="border-radius:0px;"></div><div class="radius-label">0px</div><div class="radius-sub">None</div></div>
+    <div class="radius-item"><div class="radius-box" style="border-radius:4px;"></div><div class="radius-label">4px</div><div class="radius-sub">XS · Chips</div></div>
+    <div class="radius-item"><div class="radius-box" style="border-radius:8px;"></div><div class="radius-label">8px</div><div class="radius-sub">SM · Inputs</div></div>
+    <div class="radius-item"><div class="radius-box" style="border-radius:16px;"></div><div class="radius-label">16px</div><div class="radius-sub">MD · Buttons, Cards</div></div>
+    <div class="radius-item"><div class="radius-box" style="border-radius:20px;"></div><div class="radius-label">20px</div><div class="radius-sub">LG · Feature cards</div></div>
+    <div class="radius-item"><div class="radius-box" style="border-radius:28px;"></div><div class="radius-label">28px</div><div class="radius-sub">XL · Hero sections</div></div>
+    <div class="radius-item"><div class="radius-box" style="border-radius:9999px;"></div><div class="radius-label">9999px</div><div class="radius-sub">Full · Avatars, pills</div></div>
+  </div>
+</section>
+
+<!-- 09 / ELEVATION -->
+<section class="section" id="elevation">
+  <div class="section-label">09 / ELEVATION</div>
+  <div class="section-title">Elevation &amp; Depth</div>
+  <div class="elevation-grid">
+    <div class="elev-card"><div class="elev-label">Level 0: Flat</div><div class="elev-desc">No shadow</div></div>
+    <div class="elev-card level-1"><div class="elev-label">Level 1: XS</div><div class="elev-desc">Cards at rest</div></div>
+    <div class="elev-card level-2"><div class="elev-label">Level 2: SM</div><div class="elev-desc">Dropdowns, tooltips</div></div>
+    <div class="elev-card level-3"><div class="elev-label">Level 3: MD</div><div class="elev-desc">Modals, card hover</div></div>
+    <div class="elev-card level-4"><div class="elev-label">Level 4: LG</div><div class="elev-desc">Floating panels</div></div>
+    <div class="elev-card focus"><div class="elev-label">Focus</div><div class="elev-desc">Accent ring</div></div>
+  </div>
+</section>
+
+<!-- 10 / AVATARS -->
+<section class="section" id="avatars">
+  <div class="section-label">10 / AVATARS</div>
+  <div class="section-title">User Avatars</div>
+
+  <div style="font-size:12px;font-weight:600;color:var(--text-secondary);margin-bottom:12px;">Sizes</div>
+  <div class="avatar-row">
+    <div class="avatar" style="width:100px;height:100px;background:#845cdd;font-size:22px;">МА</div>
+    <div class="avatar" style="width:40px;height:40px;background:#845cdd;font-size:14px;">МА</div>
+    <div class="avatar" style="width:32px;height:32px;background:#845cdd;font-size:11px;">МА</div>
+    <div class="avatar" style="width:24px;height:24px;background:#845cdd;font-size:8px;">МА</div>
+  </div>
+
+  <div style="font-size:12px;font-weight:600;color:var(--text-secondary);margin:24px 0 12px;">With status dots</div>
+  <div class="avatar-row">
+    <div class="avatar" style="width:40px;height:40px;background:#845cdd;font-size:14px;">МА<span class="avatar-status" style="width:12px;height:12px;background:#56d672;"></span></div>
+    <div class="avatar" style="width:40px;height:40px;background:#3B82F6;font-size:14px;">JH<span class="avatar-status" style="width:12px;height:12px;background:#b91e5a;"></span></div>
+    <div class="avatar" style="width:40px;height:40px;background:#22C55E;font-size:14px;">TA<span class="avatar-status" style="width:12px;height:12px;background:#ffcc5f;"></span></div>
+  </div>
+</section>
+
+<!-- 11 / CHAT -->
+<section class="section" id="chat">
+  <div class="section-label">11 / CHAT BUBBLES</div>
+  <div class="section-title">Chat UI</div>
+
+  <div class="chat-demo">
+    <div class="bubble-row out">
+      <div>
+        <div class="bubble client">Какая-то странная штука с принтером происходит. То выбивает чеки, то нет. Принтер AF 1274f</div>
+        <div class="bubble-time" style="text-align:right;">14:12</div>
+      </div>
+    </div>
+    <div class="bubble-row">
+      <div class="avatar" style="width:28px;height:28px;background:#845cdd;font-size:10px;flex-shrink:0;">AI</div>
+      <div>
+        <div style="font-size:11px;color:var(--text-inactive);margin-bottom:4px;">AI помощник</div>
+        <div class="bubble ai">Обычно так происходит при неисправном драйвере системы. Вот вариант решения вашей проблемы:<br>1. Зайдите в диспетчер задач… И бла-бла-бла</div>
+        <div class="bubble-time">14:12</div>
+      </div>
+    </div>
+    <div class="bubble-row out">
+      <div>
+        <div class="bubble client">Понял. Спасибо</div>
+        <div class="bubble-time" style="text-align:right;">14:12</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer style="text-align:center;padding:32px;font-size:12px;color:var(--text-inactive);border-top:1px solid var(--border);">
+  LogicBPM Design System · Generated from <strong>DESIGN.md</strong> · <a href="DESIGN.md" style="color:var(--purple-6);">View DESIGN.md</a>
+</footer>
+
+</body>
+</html>

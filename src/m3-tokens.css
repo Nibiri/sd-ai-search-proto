@@ -1,0 +1,54 @@
+/**
+ * Map @material/web CSS tokens to LogicBPM kit colors.
+ * Applied once in main.tsx so all md-* elements inherit these values.
+ */
+:root {
+  /* Primary = kit purple-6 */
+  --md-sys-color-primary:              #845cdd;
+  --md-sys-color-on-primary:           #ffffff;
+  --md-sys-color-primary-container:    #f3effc;
+  --md-sys-color-on-primary-container: #3b2963;
+
+  /* Secondary */
+  --md-sys-color-secondary:            #625B71;
+  --md-sys-color-secondary-container:  #e1d8f7;
+
+  /* Error = kit red-6 */
+  --md-sys-color-error:                #b91e5a;
+  --md-sys-color-error-container:      #f8e9ef;
+
+  /* Surface / Background = kit gray scale */
+  --md-sys-color-surface:              #ffffff;
+  --md-sys-color-surface-variant:      #f3f4f5;
+  --md-sys-color-on-surface:           #242526;
+  --md-sys-color-on-surface-variant:   #8c8c8c;
+  --md-sys-color-outline:              #d7d8d9;
+  --md-sys-color-outline-variant:      #e8eaeb;
+
+  /* Shape */
+  --md-sys-shape-corner-extra-small:   4px;
+  --md-sys-shape-corner-small:         8px;
+  --md-sys-shape-corner-medium:        8px;
+  --md-sys-shape-corner-large:         16px;
+  --md-sys-shape-corner-extra-large:   28px;
+  --md-sys-shape-corner-full:          9999px;
+
+  /* Typography */
+  --md-ref-typeface-brand: 'Inter', sans-serif;
+  --md-ref-typeface-plain: 'Inter', sans-serif;
+
+  /* Progress indicators */
+  --md-linear-progress-track-height:        4px;
+  --md-linear-progress-active-indicator-height: 4px;
+  --md-linear-progress-track-shape:         9999px;
+
+  /* Chips */
+  --md-filter-chip-container-shape:    8px;
+  --md-suggestion-chip-container-shape: 8px;
+  --md-input-chip-container-shape:     8px;
+  --md-assist-chip-container-shape:    8px;
+  --md-filter-chip-container-height:   32px;
+  --md-suggestion-chip-container-height: 32px;
+  --md-input-chip-container-height:    32px;
+  --md-assist-chip-container-height:   32px;
+}
