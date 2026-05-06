@@ -24,7 +24,7 @@ import DateRangeIcon from '@mui/icons-material/DateRange';
 
 type SearchMode = 'regular' | 'ai';
 
-import type { BadgeColor } from '@logicbpm/logicbpm-ui-kit';
+import type { BadgeColor } from '../ui';
 
 export interface RecognizedFilter {
   type: 'Type' | 'Status' | 'Assignee' | 'Channel' | 'Priority' | 'Period' | 'AIContext';

@@ -7,7 +7,7 @@ import {
 import SearchIcon from '@mui/icons-material/Search';
 import AddIcon from '@mui/icons-material/Add';
 import HeadsetMicOutlinedIcon from '@mui/icons-material/HeadsetMicOutlined';
-import { Input, Button as KitButton, Icon } from '@logicbpm/logicbpm-ui-kit';
+import { Input, Button as KitButton, Icon } from '../ui';
 import logoBpmSrc from '../assets/logo-bpm.svg';
 import { kit } from '../theme';
 import { CONVERSATIONS, type Conversation, type ConvStatus, type Message } from '../data/conversations';

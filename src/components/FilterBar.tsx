@@ -17,7 +17,7 @@ import DesktopWindowsOutlinedIcon from '@mui/icons-material/DesktopWindowsOutlin
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { TICKETS } from '../data/tickets';
 import { countMatchingTickets } from '../utils/filterUtils';
-import { Badge as KitBadge, Button as KitButton, Icon as KitIcon, Tabs as KitTabs } from '@logicbpm/logicbpm-ui-kit';
+import { Badge as KitBadge, Button as KitButton, Icon as KitIcon, Tabs as KitTabs } from '../ui';
 import type { RecognizedFilter } from './SearchBar';
 import { parseFilters, translateFilterLabel } from './SearchBar';
 import FiltersPanel from './FiltersPanel';

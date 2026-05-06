@@ -15,8 +15,8 @@ import {
   TypographySize,
   TypographyRole,
   TypographyColor,
-} from '@logicbpm/logicbpm-ui-kit';
-import type { IconName } from '@logicbpm/logicbpm-ui-kit';
+} from '../ui';
+import type { IconName } from '../ui';
 import { kit } from '../theme';
 import logoBpmSrc from '../assets/logo-bpm.svg';
 import designMdRaw from '../../DESIGN.md?raw';

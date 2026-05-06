@@ -2,9 +2,9 @@ import { Card, CardContent, Box, IconButton } from '@mui/material';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import StarIcon from '@mui/icons-material/Star';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import { Badge, UserAvatar, Icon, Typography, TypographySize, TypographyRole, TypographyColor } from '@logicbpm/logicbpm-ui-kit';
-import type { BadgeColor } from '@logicbpm/logicbpm-ui-kit';
-import type { IconName } from '@logicbpm/logicbpm-ui-kit';
+import { Badge, UserAvatar, Icon, Typography, TypographySize, TypographyRole, TypographyColor } from '../ui';
+import type { BadgeColor } from '../ui';
+import type { IconName } from '../ui';
 import type { Ticket, TicketChannel, TicketStatus, TicketType } from '../data/tickets';
 import { kit } from '../theme';
 

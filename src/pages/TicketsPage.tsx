@@ -3,7 +3,7 @@ import {
   Box, Grid, Chip,
   Skeleton, Fade,
 } from '@mui/material';
-import { Button as KitButton, Typography, TypographySize, TypographyRole, TypographyColor } from '@logicbpm/logicbpm-ui-kit';
+import { Button as KitButton, Typography, TypographySize, TypographyRole, TypographyColor } from '../ui';
 import { kit } from '../theme';
 import dogSrc from '../assets/dog.svg';
 import Header from '../components/Header';
@@ -164,7 +164,12 @@ export default function TicketsPage() {
           {([1, 2, 3] as const).map((v) => (
             <Box
               key={v}
-              onClick={() => setVariant(v)}
+              onClick={() => {
+                setVariant(v);
+                setActiveFilters([]);
+                setSearchQuery('');
+                setScopeTab('all');
+              }}
               sx={{
                 display: 'inline-flex', alignItems: 'center', height: 26, px: 1.25,
                 borderRadius: '6px',
