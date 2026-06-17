@@ -19,6 +19,25 @@ declare module 'react' {
       'md-icon':              MdEl;
       'md-navigation-bar':    MdEl & { 'active-index'?: number };
       'md-navigation-tab':    MdEl & { label?: string; active?: boolean | '' };
+
+      // LogicBPM Knowledge Widget (Web Component, грузится скриптом в index.html)
+      'knowledge-chat': MdEl & {
+        tenant?: string;
+        token?: string;
+        theme?: 'light' | 'dark' | 'auto';
+        lang?: 'ru' | 'en';
+        position?: 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left' | 'inline';
+        title?: string;
+        slogan?: string;
+        logo?: string;
+        'welcome-message'?: string;
+        width?: string;
+        height?: string;
+        collapsed?: string;
+        persist?: string;
+        'is-floating'?: string;
+        'is-resizable'?: string;
+      };
     }
   }
 }

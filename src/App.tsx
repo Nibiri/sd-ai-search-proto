@@ -4,6 +4,7 @@ import theme from './theme';
 import ClientPortalPage from './pages/ClientPortalPage';
 import TicketsPage from './pages/TicketsPage';
 import DesignSystemPage from './pages/DesignSystemPage';
+import KnowledgeWidget from './components/KnowledgeWidget';
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
         <Route path="/design" element={<DesignSystemPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
+      <KnowledgeWidget />
     </ThemeProvider>
   );
 }
